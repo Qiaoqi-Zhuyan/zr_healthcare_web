@@ -1,0 +1,39 @@
+# topic: "/env_pub" 环境信息
+{
+  "id": "0x1A",
+  "data": {
+      "temp": ""
+  }
+}
+
+{
+  "id": "0x2A",
+  "data": {
+    "gas": ""
+  }
+}
+
+{
+  "id": "0x3A",
+  "data": {
+    "humi": ""
+  }
+}
+
+
+# topic: /brec_pub
+
+{
+  "id": "0x05",
+  "data": {
+        "spo2": "",
+        "heart": ""
+  }
+}
+
+{
+  "id": "0x04",
+  "data": {
+      "temperature": "",
+  }
+}
