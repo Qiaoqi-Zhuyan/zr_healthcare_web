@@ -7,6 +7,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class MedicalStaffLoginRequest {
 
+    /**
+     * 登录请求
+     */
     private String userName;
 
     private String password;

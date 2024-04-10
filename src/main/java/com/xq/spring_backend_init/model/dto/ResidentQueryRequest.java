@@ -9,8 +9,6 @@ public class ResidentQueryRequest {
 
     private Integer residentId;
 
-    private String nationalId;
-
     private String firstName;
 
     private String lastName;
