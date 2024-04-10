@@ -1,12 +1,12 @@
-package com.xq.spring_backend_init.model.entity;
-
+package com.xq.spring_backend_init.model.vo;
 
 import lombok.Data;
 
-import java.io.Serializable;
-
+/**
+ * 护工登录返回
+ */
 @Data
-public class MedicalStaff implements Serializable {
+public class MedicalStaffVO {
 
     private Integer id;
 
@@ -19,6 +19,5 @@ public class MedicalStaff implements Serializable {
     private String phone;
 
     private String level;
-
 
 }

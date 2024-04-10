@@ -1,25 +1,20 @@
 package com.xq.spring_backend_init.model.entity;
 
-
 import lombok.Data;
 
 import java.io.Serializable;
 import java.sql.Date;
 
 @Data
-public class HealthDataMinutes implements Serializable {
+public class TemperatureSeconds implements Serializable {
+
     private Integer id;
 
     private Integer residentId;
 
-    private Double avgHeartRate;
-
-    private Double avgOxygenLevel;
-
-    private Double avgBodyTemperature;
+    private Double bodyTemperature;
 
     private Date time;
-
 
 
 }

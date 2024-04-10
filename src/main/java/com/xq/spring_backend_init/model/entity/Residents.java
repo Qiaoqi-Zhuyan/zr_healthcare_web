@@ -34,6 +34,6 @@ public class Residents implements Serializable {
 
     private Integer staffId;
 
-
+    private String habit;
 
 }

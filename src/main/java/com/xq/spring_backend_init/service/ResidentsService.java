@@ -2,9 +2,8 @@ package com.xq.spring_backend_init.service;
 
 
 
-import com.xq.spring_backend_init.model.dto.residents.ResidentQueryRequest;
 import com.xq.spring_backend_init.model.entity.Residents;
-import org.springframework.stereotype.Service;
+import com.xq.spring_backend_init.model.vo.ResidentsVO;
 
 import java.util.List;
 
@@ -16,5 +15,14 @@ public interface ResidentsService {
       * @return
       */
      List<Residents> selectAllResidents(Residents residents);
+
+     /**
+      * 分页查询信息
+      * @param page
+      * @return
+      */
+     List<ResidentsVO> pageSelectResidents(Integer page);
+
+
 
 }

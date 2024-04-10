@@ -1,4 +1,4 @@
-package com.xq.spring_backend_init.model.dto.residents;
+package com.xq.spring_backend_init.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +14,5 @@ public class ResidentQueryRequest {
     private String firstName;
 
     private String lastName;
-
-    private Integer age;
 
 }

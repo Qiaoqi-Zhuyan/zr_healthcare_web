@@ -1,8 +1,9 @@
 package com.xq.spring_backend_init.service.impl;
 
+import com.xq.spring_backend_init.mapper.MedicalStaffMapper;
 import com.xq.spring_backend_init.mapper.ResidentsMapper;
-import com.xq.spring_backend_init.model.dto.residents.ResidentQueryRequest;
 import com.xq.spring_backend_init.model.entity.Residents;
+import com.xq.spring_backend_init.model.vo.ResidentsVO;
 import com.xq.spring_backend_init.service.ResidentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,8 @@ public class ResidentsServiceImpl implements ResidentsService {
     @Autowired
     private ResidentsMapper residentsMapper;
 
+    @Autowired
+    private MedicalStaffMapper medicalStaffMapper;
 //    @Override
 //    public QueryWrapper<Residents> getQueryWapper(ResidentQueryRequest request) {
 //        QueryWrapper<Residents> queryWrapper = new QueryWrapper<>();
@@ -35,6 +38,11 @@ public class ResidentsServiceImpl implements ResidentsService {
     @Override
     public List<Residents> selectAllResidents(Residents residents) {
         return residentsMapper.selectResidentsList(residents);
+    }
+
+    @Override
+    public List<ResidentsVO> pageSelectResidents(Integer page){
+        return null;
     }
 
 

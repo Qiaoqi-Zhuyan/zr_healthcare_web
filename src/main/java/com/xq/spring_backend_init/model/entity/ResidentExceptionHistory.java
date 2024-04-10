@@ -10,6 +10,7 @@ import java.sql.Date;
 
 @Data
 public class ResidentExceptionHistory implements Serializable {
+
     private Integer id;
 
     private Integer residentId;
@@ -19,6 +20,5 @@ public class ResidentExceptionHistory implements Serializable {
     private String exceptionInfo;
 
     private Date exceptionEndTime;
-
 
 }

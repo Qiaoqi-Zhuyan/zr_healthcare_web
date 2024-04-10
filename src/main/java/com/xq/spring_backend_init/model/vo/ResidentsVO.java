@@ -1,17 +1,38 @@
 package com.xq.spring_backend_init.model.vo;
 
 
+import com.xq.spring_backend_init.model.entity.MedicalStaff;
+import com.xq.spring_backend_init.model.entity.Residents;
 import lombok.Data;
 
+/**
+ * 老登分页信息视图
+ */
 @Data
 public class ResidentsVO {
-    private Integer residentId;
 
-    private String nationalId;
-
+    /**
+     *  基本信息
+     */
     private String firstName;
 
     private String lastName;
 
-    private Integer age;
+    private MedicalStaff medicalStaff;
+
+    private String roomNumber;
+
+    public ResidentsVO EntityToVo(Residents residents, MedicalStaff medicalStaff){
+        if(residents == null || medicalStaff == null)
+            return null;
+        ResidentsVO residentsVO = new ResidentsVO();
+        residentsVO.setFirstName(residents.getFirstName());
+        residentsVO.setLastName(residents.getLastName());
+        residentsVO.setRoomNumber(residents.getRoomNumber());
+        residentsVO.setRoomNumber(residents.getRoomNumber());
+        residentsVO.setMedicalStaff(medicalStaff);
+
+        return residentsVO;
+    }
+
 }
