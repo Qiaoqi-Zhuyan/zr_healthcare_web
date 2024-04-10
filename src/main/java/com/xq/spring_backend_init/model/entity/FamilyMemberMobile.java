@@ -14,7 +14,7 @@ public class FamilyMemberMobile implements Serializable {
 
     private String  userName;
 
-    private String passWord;
+    private String password;
 
     private String relation;
 

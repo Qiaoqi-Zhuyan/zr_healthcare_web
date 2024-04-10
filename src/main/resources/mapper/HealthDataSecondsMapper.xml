@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xq.spring_backend_init.mapper.HealthDataSecondsMapper">
+
+
+    <select id="selectHealthDataByResidentId"
+            resultType="com.xq.spring_backend_init.model.entity.HealthDataSeconds">
+        SELECT * FROM health_data_seconds
+        WHERE  resident_id = #{residentId};
+
+    </select>
+    <select id="selectHealthDataByTime" resultType="com.xq.spring_backend_init.model.entity.HealthDataSeconds">
+        SELECT * FROM health_data_seconds
+        WHERE (time between #{startTime} AND #{endTime}) AND resident_id = #{residentId} ;
+    </select>
+</mapper>

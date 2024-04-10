@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xq.spring_backend_init.mapper.ResidentExceptionHistoryMapper">
+
+
+    <select id="selectExceptionList"
+            resultType="com.xq.spring_backend_init.model.entity.ResidentExceptionHistory">
+        SELECT * FROM resident_exception_history
+        <where>
+            <if test=" != null">
+                AND id = #{Id}
+            </if>
+            <if test="residentId != null">
+                AND resident_id = #{residentId}
+            </if>
+            <if test="exceptionStartTime != null">
+                AND exception_start_time = #{exceptionStartTime}
+            </if>
+            <if test="exceptionInfo != null">
+                AND exception_info = #{exceptionInfo}
+            </if>
+            <if test="exceptionEndTime != null">
+                AND exception_end_time = #{exceptionEndTime}
+            </if>
+        </where>
+    </select>
+
+
+    <select id="selectExceptionByResident"
+            resultType="com.xq.spring_backend_init.model.entity.ResidentExceptionHistory">
+        SELECT * FROM resident_exception_history
+        WHERE resident_id = #{residentId};
+    </select>
+</mapper>

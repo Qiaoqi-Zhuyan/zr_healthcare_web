@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xq.spring_backend_init.mapper.TemperatureSecondsMapper">
+
+
+    <select id="selectTemeratureDataById"
+            resultType="com.xq.spring_backend_init.model.entity.TemperatureSeconds">
+        SELECT * FROM temperature_seconds
+        WHERE  resident_id = #{residentId}
+    </select>
+
+
+    <select id="selectTemeratureDataByTime"
+            resultType="com.xq.spring_backend_init.model.entity.TemperatureSeconds">
+        SELECT * FROM temperature_seconds
+        WHERE (time between #{startTime} AND #{endTime}) AND resident_id = #{residentId}
+    </select>
+
+
+</mapper>
