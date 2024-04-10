@@ -8,7 +8,7 @@
 
 
     <insert id="insertResidents" parameterType="com.xq.spring_backend_init.model.entity.Residents">
-        INSERT INTO insertResidents (residentId,
+        INSERT INTO residents (residentId,
                                      nationalId,
                                      firstName,
                                      lastName,
