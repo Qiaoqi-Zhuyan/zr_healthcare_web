@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xq.spring_backend_init.mapper.ResidentsMapper">
+
+<!--    <resultMap id="ResidentsResultMap" type="com.xq.spring_backend_init.model.entity.Residents">-->
+<!--        <id property="residentId" column="resident_id" jdbcType="INTEGER"/>-->
+<!--    </resultMap>-->
+
+
+    <insert id="insertAssemblyLog" parameterType="com.xq.spring_backend_init.model.entity.Residents">
+        INSERT INTO insertResidents (residentId,
+                                     nationalId,
+                                     firstName,
+                                     lastName,
+                                     gender,
+                                     dataOfBirth,
+                                     phone,
+                                     emergencyContactName,
+                                     emergencyContactPhone,
+                                     roomNumber,
+                                     admissionDate,
+                                     notes,
+                                     staffId)
+        VALUES (#{residentId},
+                #{nationalId},
+                #{firstName},
+                #{lastName},
+                #{gender},
+                #{dataOfBirth},
+                #{phone},
+                #{emergencyContactName},
+                #{emergencyContactPhone},
+                #{roomNumber},
+                #{admissionDate},
+                #{notes},
+                #{staffId})
+    </insert>
+
+    <select id="selectResidentsList" parameterType="com.xq.spring_backend_init.model.entity.Residents" resultType="com.xq.spring_backend_init.model.entity.Residents">
+        SELECT * FROM residents
+        <where>
+            <if test="residentId != null">
+                AND residentId = #{residentId}
+            </if>
+            <if test="nationalId != null">
+                AND nationalId = #{nationalId}
+            </if>
+            <if test="firstName != null">
+                AND firstName = #{firstName}
+            </if>
+            <if test="lastName != null">
+                AND lastName = #{lastName}
+            </if>
+            <if test="gender != null">
+                AND gender = #{gender}
+            </if>
+            <if test="dataOfBirth != null">
+                AND dataOfBirth = #{dataOfBirth}
+            </if>
+            <if test="phone != null">
+                AND phone = #{phone}
+            </if>
+            <if test="emergencyContactName != null">
+                AND emergencyContactName = #{emergencyContactName}
+            </if>
+            <if test="emergencyContactPhone != null">
+                AND emergencyContactPhone = #{emergencyContactPhone}
+            </if>
+            <if test="roomNumber != null">
+                AND roomNumber = #{roomNumber}
+            </if>
+            <if test="admissionDate != null">
+                AND admissionDate = #{admissionDate}
+            </if>
+            <if test="notes != null">
+                AND notes = #{notes}
+            </if>
+            <if test="staffId != null">
+                AND staffId = #{staffId}
+            </if>
+        </where>
+    </select>
+
+
+</mapper>
