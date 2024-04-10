@@ -7,7 +7,7 @@
 <!--    </resultMap>-->
 
 
-    <insert id="insertResidents" parameterType="com.xq.spring_backend_init.model.entity.Residents">
+    <!--<insert id="insertResidents" parameterType="com.xq.spring_backend_init.model.entity.Residents">
         INSERT INTO insertResidents (residentId,
                                      nationalId,
                                      firstName,
@@ -34,7 +34,7 @@
                 #{admissionDate},
                 #{notes},
                 #{staffId})
-    </insert>
+    </insert>-->
 
     <select id="selectResidentsList" parameterType="com.xq.spring_backend_init.model.entity.Residents" resultType="com.xq.spring_backend_init.model.entity.Residents">
         SELECT * FROM residents

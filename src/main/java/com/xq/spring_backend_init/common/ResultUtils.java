@@ -19,7 +19,6 @@ public class ResultUtils {
     /**
      * 失败
      */
-
     public static BaseResponse error(ErrorCode errorCode){
         return new BaseResponse<>(errorCode);
     }
@@ -44,6 +43,4 @@ public class ResultUtils {
     public static BaseResponse error(ErrorCode errorCode, String message) {
         return new BaseResponse(errorCode.getCode(), message,  null);
     }
-
-
 }
