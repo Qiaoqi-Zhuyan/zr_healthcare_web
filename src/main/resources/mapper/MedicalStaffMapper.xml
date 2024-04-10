@@ -30,6 +30,4 @@
         SELECT * FROM medical_staff
         WHERE password = #{password} AND username = #{userName}
     </select>
-
-
 </mapper>

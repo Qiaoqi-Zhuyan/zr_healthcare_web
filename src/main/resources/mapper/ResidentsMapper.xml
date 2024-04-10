@@ -81,5 +81,26 @@
         </where>
     </select>
 
+    <select id="getAllExceptions" resultType="com.xq.spring_backend_init.model.vo.ExceptionAlertVO">
+        SELECT
+            r.first_name,
+            r.last_name,
+            r.room_number,
+            r.resident_id,
+            reh.exception_start_time AS exceptionStartTime,
+            reh.exception_info AS exceptionInfo,
+            reh.exception_end_time AS exceptionEndTime
+        FROM
+            residents r
+                INNER JOIN
+            medical_staff ms ON r.staff_id = ms.id
+                INNER JOIN
+            resident_exception_history reh ON r.resident_id = reh.resident_id
+        WHERE
+            ms.id = #{staffId}
+        ORDER BY
+            reh.exception_start_time DESC;
+    </select>
+
 
 </mapper>

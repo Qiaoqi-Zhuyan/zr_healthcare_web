@@ -40,5 +40,4 @@ public class ResidentsController {
         return null;
     }
 
-
 }
