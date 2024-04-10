@@ -2,6 +2,7 @@ package com.xq.spring_backend_init.mapper;
 
 
 import com.xq.spring_backend_init.model.entity.Residents;
+import com.xq.spring_backend_init.model.vo.ExceptionAlertVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -54,6 +55,8 @@ public interface ResidentsMapper{
      * @return
      */
     public List<Residents> selectResidentsList(Residents residents);
+
+    public List<ExceptionAlertVO> getAllExceptions(int staffId);
 
 
 }

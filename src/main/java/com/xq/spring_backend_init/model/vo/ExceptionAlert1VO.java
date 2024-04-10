@@ -5,12 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class ExceptionAlertVO {
+@AllArgsConstructor
+public class ExceptionAlert1VO {
     /**
      *
      * 主页警报信息
@@ -23,11 +22,11 @@ public class ExceptionAlertVO {
 
     private Integer residentId;
 
-    private Timestamp exceptionStartTime;
+    private String exceptionStartTime;
 
     private String exceptionInfo;
 
-    private Timestamp exceptionEndTime;
+    private String exceptionEndTime;
 
     private Boolean isCurrent;
 }

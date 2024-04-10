@@ -48,4 +48,5 @@ public interface MedicalStaffMapper {
      * @param medicalStaff
      *//*
     public void deleteMedicalStaff(MedicalStaff medicalStaff);*/
+
 }

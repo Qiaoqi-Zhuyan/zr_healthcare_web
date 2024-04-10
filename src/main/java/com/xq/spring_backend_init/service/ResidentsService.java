@@ -3,6 +3,7 @@ package com.xq.spring_backend_init.service;
 
 
 import com.xq.spring_backend_init.model.entity.Residents;
+import com.xq.spring_backend_init.model.vo.ExceptionAlert1VO;
 import com.xq.spring_backend_init.model.vo.ResidentsVO;
 
 import java.util.List;
@@ -24,5 +25,5 @@ public interface ResidentsService {
      List<ResidentsVO> pageSelectResidents(Integer page);
 
 
-
+     List<ExceptionAlert1VO> getAllExceptions(int staffId);
 }
