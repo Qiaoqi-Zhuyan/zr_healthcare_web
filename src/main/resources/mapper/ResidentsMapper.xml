@@ -6,9 +6,9 @@
 <!--        <id property="residentId" column="resident_id" jdbcType="INTEGER"/>-->
 <!--    </resultMap>-->
 
-
-    <insert id="insertResidents" parameterType="com.xq.spring_backend_init.model.entity.Residents">
-        INSERT INTO residents (residentId,
+    <!--<insert id="insertResidents" parameterType="com.xq.spring_backend_init.model.entity.Residents">
+        INSERT INTO insertResidents (residentId,
+>>>>>>> origin/zzc
                                      nationalId,
                                      firstName,
                                      lastName,
@@ -34,7 +34,7 @@
                 #{admissionDate},
                 #{notes},
                 #{staffId})
-    </insert>
+    </insert>-->
 
     <select id="selectResidentsList" parameterType="com.xq.spring_backend_init.model.entity.Residents" resultType="com.xq.spring_backend_init.model.entity.Residents">
         SELECT * FROM residents

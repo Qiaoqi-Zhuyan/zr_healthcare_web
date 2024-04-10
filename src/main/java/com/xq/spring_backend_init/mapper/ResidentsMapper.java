@@ -20,26 +20,33 @@ public interface ResidentsMapper{
      *
      * @param residents
      * @return 200: 成功插入 -1 失败
-     */
+/*
+     *//*
+
     public void insertResidents(Residents residents);
 
-    /**
+    */
+/**
      *
      * 删除病人数据
      *
      * @param residents
      * @return 200: ok -1: fail
-     */
+     *//*
+
     public void deletResidents(Residents residents);
 
-    /**
+    */
+/**
      *
      * 更新病人数据
      *
      * @param residents
      * @return
-     */
+     *//*
+
     public void updateResidents(Residents residents);
+*/
 
     /**
      * 查询病人数据

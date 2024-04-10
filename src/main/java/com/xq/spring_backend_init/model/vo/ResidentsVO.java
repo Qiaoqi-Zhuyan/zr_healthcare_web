@@ -11,6 +11,38 @@ import lombok.Data;
 @Data
 public class ResidentsVO {
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public MedicalStaff getMedicalStaff() {
+        return medicalStaff;
+    }
+
+    public void setMedicalStaff(MedicalStaff medicalStaff) {
+        this.medicalStaff = medicalStaff;
+    }
+
+    public String getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(String roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
     /**
      *  基本信息
      */
