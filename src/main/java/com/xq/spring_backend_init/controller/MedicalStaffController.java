@@ -23,6 +23,11 @@ public class MedicalStaffController {
     ResidentsService residentsService;
 
 
+    /**
+     * 网页staff登录接口
+     * @param medicalStaffLoginRequest
+     * @return
+     */
     @PostMapping("/login")
     public BaseResponse<MedicalStaffVO> login(@RequestBody MedicalStaffLoginRequest medicalStaffLoginRequest){
         MedicalStaffVO medicalStaffVO = medicalStaffLoginService.login(medicalStaffLoginRequest.getUserName(), medicalStaffLoginRequest.getPassword());
@@ -32,7 +37,7 @@ public class MedicalStaffController {
     }
 
     /**
-     * 获取所有历史信息
+     * 获取所有历史异常信息
      * @param staffId
      * @return
      */
