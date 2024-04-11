@@ -30,4 +30,10 @@
         SELECT * FROM medical_staff
         WHERE password = #{password} AND username = #{userName}
     </select>
+
+
+    <select id="selectMedicalStaffById" resultType="com.xq.spring_backend_init.model.entity.MedicalStaff">
+        SELECT * FROM medical_staff
+        WHERE id = #{id}
+    </select>
 </mapper>

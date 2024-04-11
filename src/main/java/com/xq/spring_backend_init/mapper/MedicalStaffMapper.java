@@ -16,12 +16,13 @@ public interface MedicalStaffMapper {
      */
     public MedicalStaff selectMedicalStaff(String userName, String password);
 
+
     /**
      *
      * 根据护工id查询
      *
      */
-    //public MedicalStaff selectMedicalStaffById(Integer id);
+    public MedicalStaff selectMedicalStaffById(Integer id);
 
     /**
      * 查询护工信息

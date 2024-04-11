@@ -5,6 +5,7 @@ import com.xq.spring_backend_init.common.BaseResponse;
 import com.xq.spring_backend_init.common.ResultUtils;
 import com.xq.spring_backend_init.model.dto.ResidentQueryRequest;
 import com.xq.spring_backend_init.model.entity.Residents;
+import com.xq.spring_backend_init.model.vo.ResidentsListVO;
 import com.xq.spring_backend_init.model.vo.ResidentsVO;
 import com.xq.spring_backend_init.service.ResidentsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,12 +31,13 @@ public class ResidentsController {
         return ResultUtils.success(residentsList);
     }
 
-    @PostMapping("/pageSelect/{page}")
-    public BaseResponse<List<ResidentsVO>> pageSelect(@PathVariable("page") Integer page){
-        return null;
+    @PostMapping("/pageSelect")
+    public BaseResponse<List<ResidentsListVO>> pageSelect(){
+        List<ResidentsListVO> residentsListVOList = residentsService.getResidentsVOList();
+        return ResultUtils.success(residentsListVOList);
     }
 
-    @PostMapping("/getDetailInfo")
+    @PostMapping("/getDetailInfo/")
     public BaseResponse<ResidentsVO> getDetailInfo(@RequestBody ResidentQueryRequest request){
         return null;
     }

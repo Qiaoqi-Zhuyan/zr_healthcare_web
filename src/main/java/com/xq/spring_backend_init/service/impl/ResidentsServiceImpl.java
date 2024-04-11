@@ -2,10 +2,9 @@ package com.xq.spring_backend_init.service.impl;
 
 import com.xq.spring_backend_init.mapper.MedicalStaffMapper;
 import com.xq.spring_backend_init.mapper.ResidentsMapper;
+import com.xq.spring_backend_init.model.entity.MedicalStaff;
 import com.xq.spring_backend_init.model.entity.Residents;
-import com.xq.spring_backend_init.model.vo.ExceptionAlert1VO;
-import com.xq.spring_backend_init.model.vo.ExceptionAlertVO;
-import com.xq.spring_backend_init.model.vo.ResidentsVO;
+import com.xq.spring_backend_init.model.vo.*;
 import com.xq.spring_backend_init.service.ResidentsService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,22 +22,6 @@ public class ResidentsServiceImpl implements ResidentsService {
 
     @Autowired
     private MedicalStaffMapper medicalStaffMapper;
-//    @Override
-//    public QueryWrapper<Residents> getQueryWapper(ResidentQueryRequest request) {
-//        QueryWrapper<Residents> queryWrapper = new QueryWrapper<>();
-//        if(request == null)
-//            return queryWrapper;
-//        Integer residentId = request.getResidentId();
-//        String nationalId = request.getNationalId();
-//        String firstName = request.getFirstName();
-//        String lastName = request.getLastName();
-//
-//        queryWrapper.eq(ObjectUtils.isNotEmpty(residentId),"resident_id", residentId);
-//        queryWrapper.eq(StringUtils.isNotEmpty(nationalId), "national_id", nationalId);
-//        queryWrapper.eq(StringUtils.isNotEmpty(firstName), "first_name", firstName);
-//
-//        return queryWrapper;
-//    }
 
     @Override
     public List<Residents> selectAllResidents(Residents residents) {
@@ -69,6 +52,28 @@ public class ResidentsServiceImpl implements ResidentsService {
             list2.add(exceptionAlert1VO);
         }
         return list2;
+    }
+
+    /**
+     * 查询所有老年人的姓名、管理人员(姓名, 联系方式)、房间号
+     * @return
+     */
+    @Override
+    public List<ResidentsListVO> getResidentsVOList() {
+
+        List<ResidentsListVO> residentsListVOList = new ArrayList<>();
+        List<Residents> residentsList = residentsMapper.selectResidentsList(null);
+        for(Residents resident : residentsList){
+            Integer staff_id = resident.getStaffId();
+            MedicalStaff medicalStaff = medicalStaffMapper.selectMedicalStaffById(staff_id);
+            ResidentMedicalStaffVO residentMedicalStaffVO = new ResidentMedicalStaffVO();
+            residentMedicalStaffVO.setStaffName(medicalStaff.getStaffName());
+            residentMedicalStaffVO.setPhone(medicalStaff.getPhone());
+
+            residentsListVOList.add(new ResidentsListVO(resident.getFirstName(), resident.getLastName(), residentMedicalStaffVO, resident.getRoomNumber()));
+        }
+
+        return residentsListVOList;
     }
 
 

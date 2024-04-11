@@ -56,6 +56,8 @@ public interface ResidentsMapper{
      */
     public List<Residents> selectResidentsList(Residents residents);
 
+
+
     public List<ExceptionAlertVO> getAllExceptions(int staffId);
 
 

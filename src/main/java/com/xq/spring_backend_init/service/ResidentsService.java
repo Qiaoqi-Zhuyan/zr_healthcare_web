@@ -4,6 +4,7 @@ package com.xq.spring_backend_init.service;
 
 import com.xq.spring_backend_init.model.entity.Residents;
 import com.xq.spring_backend_init.model.vo.ExceptionAlert1VO;
+import com.xq.spring_backend_init.model.vo.ResidentsListVO;
 import com.xq.spring_backend_init.model.vo.ResidentsVO;
 
 import java.util.List;
@@ -26,4 +27,11 @@ public interface ResidentsService {
 
 
      List<ExceptionAlert1VO> getAllExceptions(int staffId);
+
+     /**
+      * 查询所有老年人的姓名、管理人员(姓名, 联系方式)、房间号
+      * @return
+      */
+     List<ResidentsListVO> getResidentsVOList();
+
 }
