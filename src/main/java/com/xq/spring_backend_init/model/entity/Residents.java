@@ -4,11 +4,13 @@ package com.xq.spring_backend_init.model.entity;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 @Data
 public class Residents implements Serializable {
     private Integer residentId;
+
+    private String serialNumber;
 
     private String nationalId;
 
@@ -18,7 +20,7 @@ public class Residents implements Serializable {
 
     private String gender;
 
-    private Date dataOfBirth;
+    private Date dateOfBirth;
 
     private String phone;
 

@@ -34,4 +34,6 @@ public interface ResidentsService {
       */
      List<ResidentsListVO> getResidentsVOList();
 
+
+
 }

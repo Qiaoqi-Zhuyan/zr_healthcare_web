@@ -69,12 +69,14 @@ public class ResidentsServiceImpl implements ResidentsService {
             ResidentMedicalStaffVO residentMedicalStaffVO = new ResidentMedicalStaffVO();
             residentMedicalStaffVO.setStaffName(medicalStaff.getStaffName());
             residentMedicalStaffVO.setPhone(medicalStaff.getPhone());
-
-            residentsListVOList.add(new ResidentsListVO(resident.getFirstName(), resident.getLastName(), residentMedicalStaffVO, resident.getRoomNumber()));
+            ResidentsListVO  residentsListVO = new ResidentsListVO();
+            BeanUtils.copyProperties(resident, residentsListVO);
+            residentsListVOList.add(residentsListVO);
         }
 
         return residentsListVOList;
     }
+
 
 
 }

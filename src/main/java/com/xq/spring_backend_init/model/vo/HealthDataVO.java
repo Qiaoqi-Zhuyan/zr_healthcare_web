@@ -3,7 +3,7 @@ package com.xq.spring_backend_init.model.vo;
 import com.xq.spring_backend_init.model.entity.HealthDataSeconds;
 import lombok.Data;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -16,6 +16,6 @@ public class HealthDataVO {
 
     private Double oxygenLevel;
 
-    private Date time;
+    private String time;
 
 }

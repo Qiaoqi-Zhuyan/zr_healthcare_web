@@ -27,4 +27,13 @@ public interface HealthDataSecondsMapper {
      */
     public List<HealthDataSeconds> selectHealthDataByTime(Integer residentId, Date startTime, Date endTime);
 
+    /**
+     *
+     * 获取最近15天的信息
+     *
+     * @param residentId
+     * @return
+     */
+    public List<HealthDataSeconds> selectHealthDataList(Integer residentId);
+
 }

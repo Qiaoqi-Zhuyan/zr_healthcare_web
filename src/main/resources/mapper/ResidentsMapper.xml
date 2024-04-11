@@ -40,7 +40,7 @@
         SELECT * FROM residents
         <where>
             <if test="residentId != null">
-                AND residentId = #{residentId}
+                AND resident_id = #{residentId}
             </if>
             <if test="nationalId != null">
                 AND nationalId = #{nationalId}
@@ -54,17 +54,17 @@
             <if test="gender != null">
                 AND gender = #{gender}
             </if>
-            <if test="dataOfBirth != null">
-                AND dataOfBirth = #{dataOfBirth}
+            <if test="dateOfBirth != null">
+                AND date_of_birth = #{dateOfBirth}
             </if>
             <if test="phone != null">
                 AND phone = #{phone}
             </if>
             <if test="emergencyContactName != null">
-                AND emergencyContactName = #{emergencyContactName}
+                AND emergency_contact_name = #{emergencyContactName}
             </if>
             <if test="emergencyContactPhone != null">
-                AND emergencyContactPhone = #{emergencyContactPhone}
+                AND emergency_contact_phone = #{emergencyContactPhone}
             </if>
             <if test="roomNumber != null">
                 AND roomNumber = #{roomNumber}
@@ -100,6 +100,10 @@
             ms.id = #{staffId}
         ORDER BY
             reh.exception_start_time DESC;
+    </select>
+    <select id="selectResident" resultType="com.xq.spring_backend_init.model.entity.Residents">
+        SELECT * from residents
+        WHERE resident_id = #{residentId}
     </select>
 
 

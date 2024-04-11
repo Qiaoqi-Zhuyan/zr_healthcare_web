@@ -5,7 +5,7 @@ import com.xq.spring_backend_init.model.entity.Residents;
 import com.xq.spring_backend_init.model.entity.TemperatureSeconds;
 import lombok.Data;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * 老登详细信息视图
@@ -21,7 +21,7 @@ public class ResidentDetailVO {
 
     private String gender;
 
-    private Date dataOfBirth;
+    private String dateOfBirth;
 
     private String phone;
 
