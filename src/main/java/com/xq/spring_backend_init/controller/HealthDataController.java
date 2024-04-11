@@ -13,6 +13,7 @@ import com.xq.spring_backend_init.model.vo.ResidentDetailVO;
 import com.xq.spring_backend_init.model.vo.ResidentsVO;
 import com.xq.spring_backend_init.service.HealthDataService;
 import com.xq.spring_backend_init.service.ResidentsService;
+import com.xq.spring_backend_init.service.RoomEnvironmentService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class HealthDataController {
 
     @Autowired
    private HealthDataService healthDataService;
+
+    @Autowired
+    private RoomEnvironmentService roomEnvironmentService;
 //    /**
 //     * 测试
 //     * @return
@@ -57,6 +61,14 @@ public class HealthDataController {
     public BaseResponse<List<HealthDataVO>> getHealthDataList(@PathVariable("id")Integer residentId){
         List<HealthDataVO> healthDataVOList = healthDataService.getHealthDataVOList(residentId);
         return healthDataVOList.isEmpty() ? ResultUtils.error(202, "无数据"): ResultUtils.success(healthDataVOList);
+    }
+
+    /**
+     * 根据staffId获取房间环境信息
+     */
+    @GetMapping("/getRoomEnvironment/{id}")
+    public void getRoomEnvironment(@PathVariable("id") Integer id){
+        roomEnvironmentService.getEnvironment(id);
     }
 
 }

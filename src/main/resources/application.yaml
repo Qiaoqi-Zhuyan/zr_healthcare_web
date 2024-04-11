@@ -22,6 +22,20 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
 
+
+mqtt:
+  hostUrl: tcp://8.138.0.106:1883
+  username: admin
+  password: 15222843862Zyh
+  client-id: test2
+  cleanSession: true
+  reconnect: true
+  timeout: 100
+  keepAlive: 100
+  defaultTopic: bcd
+  isOpen: true
+  qos: 1
+
 #mybatis-plus:
 #  configuration:
 #    map-underscore-to-camel-case: false
