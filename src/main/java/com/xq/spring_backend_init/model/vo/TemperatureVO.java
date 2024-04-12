@@ -2,7 +2,7 @@ package com.xq.spring_backend_init.model.vo;
 
 import lombok.Data;
 
-import java.sql.Date;
+import java.util.Date;
 
 @Data
 public class TemperatureVO {
@@ -12,6 +12,6 @@ public class TemperatureVO {
      */
     private Double bodyTemperature;
 
-    private Date time;
+    private String time;
 
 }

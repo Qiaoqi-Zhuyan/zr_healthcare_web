@@ -8,8 +8,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class HardwareDataDTO {
-    int id;
-    private HealthDTO data;
+     private int id;
+
+     private String room;
+
+     private HealthDTO data;
 
     @Data
     @AllArgsConstructor

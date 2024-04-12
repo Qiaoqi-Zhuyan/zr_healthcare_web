@@ -15,6 +15,10 @@
         SELECT * FROM temperature_seconds
         WHERE (time between #{startTime} AND #{endTime}) AND resident_id = #{residentId}
     </select>
+    <select id="selectHealthDataList" resultType="com.xq.spring_backend_init.model.entity.TemperatureSeconds">
+        SELECT * FROM temperature_seconds
+        WHERE resident_id = #{residentId} AND (DATE_SUB(CURRENT_DATE(), INTERVAL 15 DAY) &lt;= DATE(time))
+    </select>
 
 
 </mapper>

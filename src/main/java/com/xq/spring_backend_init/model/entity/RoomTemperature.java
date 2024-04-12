@@ -11,8 +11,8 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RoomTemperature {
-    Double roomTemperature;
-    Integer id;
-    Integer residentId;
-    Date time;
+    private Double roomTemperature;
+    private Integer id;
+    private String roomNumber;
+    private Date time;
 }

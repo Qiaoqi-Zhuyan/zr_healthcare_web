@@ -1,24 +1,24 @@
 package com.xq.spring_backend_init.controller;
 
 import com.alibaba.excel.util.IntUtils;
+import com.fasterxml.jackson.databind.ser.Serializers;
 import com.xq.spring_backend_init.common.BaseResponse;
 import com.xq.spring_backend_init.common.ErrorCode;
 import com.xq.spring_backend_init.common.ResultUtils;
 import com.xq.spring_backend_init.mapper.HealthDataSecondsMapper;
 import com.xq.spring_backend_init.model.dto.MedicalStaffLoginRequest;
 import com.xq.spring_backend_init.model.entity.Residents;
-import com.xq.spring_backend_init.model.vo.HealthDataVO;
-import com.xq.spring_backend_init.model.vo.MedicalStaffVO;
-import com.xq.spring_backend_init.model.vo.ResidentDetailVO;
-import com.xq.spring_backend_init.model.vo.ResidentsVO;
+import com.xq.spring_backend_init.model.vo.*;
 import com.xq.spring_backend_init.service.HealthDataService;
 import com.xq.spring_backend_init.service.ResidentsService;
 import com.xq.spring_backend_init.service.RoomEnvironmentService;
+import com.xq.spring_backend_init.service.TemperatureService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,6 +33,9 @@ public class HealthDataController {
 
     @Autowired
     private RoomEnvironmentService roomEnvironmentService;
+
+    @Autowired
+    private TemperatureService temperatureService;
 //    /**
 //     * 测试
 //     * @return
@@ -57,18 +60,25 @@ public class HealthDataController {
      *
      * @return
      */
-    @PostMapping("/getHealthDataList/{id}")
-    public BaseResponse<List<HealthDataVO>> getHealthDataList(@PathVariable("id")Integer residentId){
+    @PostMapping("/getHealthDataList/{residentId}")
+    public BaseResponse<List<HealthDataVO>> getHealthDataList(@PathVariable("residentId")Integer residentId){
         List<HealthDataVO> healthDataVOList = healthDataService.getHealthDataVOList(residentId);
-        return healthDataVOList.isEmpty() ? ResultUtils.error(202, "无数据"): ResultUtils.success(healthDataVOList);
+        return healthDataVOList.isEmpty()?ResultUtils.error(202, "无数据"): ResultUtils.success(healthDataVOList);
     }
 
-    /**
-     * 根据staffId获取房间环境信息
-     */
-    @GetMapping("/getRoomEnvironment/{id}")
-    public void getRoomEnvironment(@PathVariable("id") Integer id){
-        roomEnvironmentService.getEnvironment(id);
+
+//    /**
+//     * 根据staffId获取房间环境信息
+//     */
+//    @GetMapping("/getRoomEnvironment/{id}")
+//    public void getRoomEnvironment(@PathVariable("id") Integer id){
+//        roomEnvironmentService.getEnvironment(id);
+//    }
+
+    @PostMapping("/getTemperatureList/{residentId}")
+    public BaseResponse<List<TemperatureVO>> getTemperatureList(@PathVariable("residentId")Integer residentId){
+        List<TemperatureVO> temperatureVOList = temperatureService.getTemperatureVOList(residentId);
+        return temperatureVOList.isEmpty()?ResultUtils.error(202, "无数据"):ResultUtils.success(temperatureVOList);
     }
 
 }

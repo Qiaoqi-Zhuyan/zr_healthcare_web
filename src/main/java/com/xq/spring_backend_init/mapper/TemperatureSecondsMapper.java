@@ -28,4 +28,14 @@ public interface TemperatureSecondsMapper {
      */
     public List<TemperatureSeconds> selectTemeratureDataByTime(Integer residentId, Date StartTime, Date endTime);
 
+
+    /**
+     *
+     * 获取最近15天的体温信息
+     *
+     * @param residentId
+     * @return
+     */
+    public List<TemperatureSeconds> selectHealthDataList(Integer residentId);
+
 }
