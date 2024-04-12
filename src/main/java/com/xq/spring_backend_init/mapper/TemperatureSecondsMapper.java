@@ -38,4 +38,11 @@ public interface TemperatureSecondsMapper {
      */
     public List<TemperatureSeconds> selectHealthDataList(Integer residentId);
 
+    /**
+     * 获取最新的老人体温信息
+     * @param residentId
+     * @return
+     */
+    public TemperatureSeconds getLeastTemperature(Integer residentId);
+
 }

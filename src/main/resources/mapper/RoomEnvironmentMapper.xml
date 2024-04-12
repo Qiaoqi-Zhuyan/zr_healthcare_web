@@ -4,14 +4,14 @@
 
 
     <select id="getLeastRoomHumity" resultType="com.xq.spring_backend_init.model.entity.RoomHunidity">
-
-
+        SELECT * FROM room_hunidity
+        WHERE id = (SELECT MAX(id) FROM room_hunidity) AND room_number = #{room}
     </select>
 
 
     <select id="getLeastTemperature" resultType="com.xq.spring_backend_init.model.entity.RoomTemperature">
-
-
+        SELECT * FROM room_temperature
+        WHERE id = (SELECT MAX(id) FROM room_temperature) AND room_number = #{room}
     </select>
 
 

@@ -43,13 +43,13 @@
                 AND resident_id = #{residentId}
             </if>
             <if test="nationalId != null">
-                AND nationalId = #{nationalId}
+                AND national_id = #{nationalId}
             </if>
             <if test="firstName != null">
-                AND firstName = #{firstName}
+                AND first_name = #{firstName}
             </if>
             <if test="lastName != null">
-                AND lastName = #{lastName}
+                AND last_name = #{lastName}
             </if>
             <if test="gender != null">
                 AND gender = #{gender}
@@ -67,16 +67,16 @@
                 AND emergency_contact_phone = #{emergencyContactPhone}
             </if>
             <if test="roomNumber != null">
-                AND roomNumber = #{roomNumber}
+                AND room_number = #{roomNumber}
             </if>
             <if test="admissionDate != null">
-                AND admissionDate = #{admissionDate}
+                AND admission_date = #{admissionDate}
             </if>
             <if test="notes != null">
                 AND notes = #{notes}
             </if>
             <if test="staffId != null">
-                AND staffId = #{staffId}
+                AND staff_id = #{staffId}
             </if>
         </where>
     </select>
@@ -104,6 +104,10 @@
     <select id="selectResident" resultType="com.xq.spring_backend_init.model.entity.Residents">
         SELECT * from residents
         WHERE resident_id = #{residentId}
+    </select>
+    <select id="getRoomNumberByStaffId" resultType="java.lang.String">
+        SELECT DISTINCT room_number FROM residents
+        WHERE staff_id = #{staff_id}
     </select>
 
 

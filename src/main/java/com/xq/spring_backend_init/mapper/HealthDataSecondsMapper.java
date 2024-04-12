@@ -36,4 +36,11 @@ public interface HealthDataSecondsMapper {
      */
     public List<HealthDataSeconds> selectHealthDataList(Integer residentId);
 
+    /**
+     * 获取最新的老人健康信息
+     * @param residentId
+     * @return
+     */
+    public HealthDataSeconds getLeastHealthData(Integer residentId);
+
 }
