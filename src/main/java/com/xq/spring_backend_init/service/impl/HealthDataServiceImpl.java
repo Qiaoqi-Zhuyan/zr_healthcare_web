@@ -64,4 +64,39 @@ public class HealthDataServiceImpl implements HealthDataService {
         }
         return healthDataVOS;
     }
+
+    /**
+     * 获取近15天每天的健康数据平均值
+     * @param residentId
+     * @return
+     */
+    @Override
+    public List<HealthDataVO> getHealthDataVOAvgList(Integer residentId) {
+        List<HealthDataVO> healthDataVOS = new ArrayList<>();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        for (int day = 0; day < 15; day++){
+            try{
+                List<HealthDataSeconds> healthDataSecondsList = healthDataSecondsMapper.getHealthDate(residentId, day);
+                if(healthDataSecondsList.size() == 0)
+                    continue;
+                double heartRateCount = 0, oxygenLevel = 0;
+                for (HealthDataSeconds healthDataSeconds : healthDataSecondsList){
+                    heartRateCount += healthDataSeconds.getHeartRate();
+                    oxygenLevel += healthDataSeconds.getOxygenLevel();
+                }
+                double averageHeartRate = heartRateCount / healthDataSecondsList.size(), averageOxygenLevel = oxygenLevel / healthDataSecondsList.size();
+                HealthDataVO healthDataVO = new HealthDataVO();
+                healthDataVO.setTime(formatter.format(healthDataSecondsList.get(0).getTime()));
+                healthDataVO.setHeartRate(averageHeartRate);
+                healthDataVO.setOxygenLevel(averageOxygenLevel);
+                healthDataVOS.add(healthDataVO);
+            }catch (DataAccessException ex){
+                ex.printStackTrace();
+            }
+        }
+
+        return healthDataVOS;
+    }
+
+
 }

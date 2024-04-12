@@ -36,48 +36,26 @@ public class HealthDataController {
 
     @Autowired
     private TemperatureService temperatureService;
-//    /**
-//     * 测试
-//     * @return
-//     */
-//    @PostMapping("/test")
-//    public BaseResponse<List<ResidentDetailVO>> login(){
-//        List<Residents> residentsList = residentsService.selectAllResidents(null);
-//        List<ResidentDetailVO> residentsVOList = new ArrayList<>();
-//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-//        for(Residents resident : residentsList){
-//            ResidentDetailVO residentsVO = new ResidentDetailVO();
-//            BeanUtils.copyProperties(resident, residentsVO);
-//            residentsVO.setDateOfBirth(formatter.format(resident.getDateOfBirth()));
-//            residentsVOList.add(residentsVO);
-//        }
-//        return ResultUtils.success(residentsVOList);
-//    }
-
 
     /**
-     * 根据老年人的id获取近15天的身体数据 (血氧, 心率)
+     * 根据老年人的id获取近15天的身体数据平均值 (血氧, 心率)
      *
      * @return
      */
-    @PostMapping("/getHealthDataList/{residentId}")
+    @PostMapping("/getAvgHealthDataList/{residentId}")
     public BaseResponse<List<HealthDataVO>> getHealthDataList(@PathVariable("residentId")Integer residentId){
-        List<HealthDataVO> healthDataVOList = healthDataService.getHealthDataVOList(residentId);
-        return healthDataVOList.isEmpty()?ResultUtils.error(202, "无数据"): ResultUtils.success(healthDataVOList);
+        List<HealthDataVO> healthDataVOS = healthDataService.getHealthDataVOAvgList(residentId);
+        return healthDataVOS.isEmpty()? ResultUtils.error(202, "无数据"):ResultUtils.success(healthDataVOS);
     }
 
-
-//    /**
-//     * 根据staffId获取房间环境信息
-//     */
-//    @GetMapping("/getRoomEnvironment/{id}")
-//    public void getRoomEnvironment(@PathVariable("id") Integer id){
-//        roomEnvironmentService.getEnvironment(id);
-//    }
-
-    @PostMapping("/getTemperatureList/{residentId}")
+    /**
+     * 根据老年人的id获取近15天的身体数据平均值 (体温)
+     *
+     * @return
+     */
+    @PostMapping("/getAvgTemperatureList/{residentId}")
     public BaseResponse<List<TemperatureVO>> getTemperatureList(@PathVariable("residentId")Integer residentId){
-        List<TemperatureVO> temperatureVOList = temperatureService.getTemperatureVOList(residentId);
+        List<TemperatureVO> temperatureVOList = temperatureService.getTemperatureVOAvgList(residentId);
         return temperatureVOList.isEmpty()?ResultUtils.error(202, "无数据"):ResultUtils.success(temperatureVOList);
     }
 

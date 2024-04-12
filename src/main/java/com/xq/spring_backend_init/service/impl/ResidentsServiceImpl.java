@@ -1,8 +1,10 @@
 package com.xq.spring_backend_init.service.impl;
 
 import com.xq.spring_backend_init.mapper.MedicalStaffMapper;
+import com.xq.spring_backend_init.mapper.ResidentExceptionHistoryMapper;
 import com.xq.spring_backend_init.mapper.ResidentsMapper;
 import com.xq.spring_backend_init.model.entity.MedicalStaff;
+import com.xq.spring_backend_init.model.entity.ResidentExceptionHistory;
 import com.xq.spring_backend_init.model.entity.Residents;
 import com.xq.spring_backend_init.model.vo.*;
 import com.xq.spring_backend_init.service.ResidentsService;
@@ -22,6 +24,9 @@ public class ResidentsServiceImpl implements ResidentsService {
 
     @Autowired
     private MedicalStaffMapper medicalStaffMapper;
+
+    @Autowired
+    private ResidentExceptionHistoryMapper residentExceptionHistoryMapper;
 
     @Override
     public List<Residents> selectAllResidents(Residents residents) {
@@ -71,12 +76,33 @@ public class ResidentsServiceImpl implements ResidentsService {
             residentMedicalStaffVO.setPhone(medicalStaff.getPhone());
             ResidentsListVO  residentsListVO = new ResidentsListVO();
             BeanUtils.copyProperties(resident, residentsListVO);
+            residentsListVO.setResidentMedicalStaffVO(residentMedicalStaffVO);
             residentsListVOList.add(residentsListVO);
         }
 
         return residentsListVOList;
     }
 
+
+    /**
+     * 获取过去15天的警报统计数据
+     * @param residentId
+     * @return
+     */
+    @Override
+    public ExceptionCountVO getHistoryExceptionInfo(Integer residentId) {
+
+        List<ResidentExceptionHistory> temperatureExceptionHistory = residentExceptionHistoryMapper.getHistoryExceptionInfo(residentId, "体温异常");
+        List<ResidentExceptionHistory> oxygenLevelExceptionHistory = residentExceptionHistoryMapper.getHistoryExceptionInfo(residentId, "血氧异常");
+        List<ResidentExceptionHistory> heartRateExceptionHistory = residentExceptionHistoryMapper.getHistoryExceptionInfo(residentId, "心率异常");
+
+        ExceptionCountVO exceptionCountVO = new ExceptionCountVO();
+        exceptionCountVO.setHeartExceptionCnt(heartRateExceptionHistory.size());
+        exceptionCountVO.setTemperatureExceptionCnt(temperatureExceptionHistory.size());
+        exceptionCountVO.setOxygenLevelExceptionCnt(oxygenLevelExceptionHistory.size());
+
+        return exceptionCountVO;
+    }
 
 
 }

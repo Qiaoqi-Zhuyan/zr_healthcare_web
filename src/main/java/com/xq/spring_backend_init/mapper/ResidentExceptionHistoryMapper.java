@@ -25,5 +25,14 @@ public interface ResidentExceptionHistoryMapper {
      */
     public List<ResidentExceptionHistory> selectExceptionByResident(Integer memberId);
 
+    /**
+     * 获取近15天的不同异常的统计数据
+     * @param residentId
+     * @return
+     */
+    public List<ResidentExceptionHistory> getHistoryExceptionInfo(Integer residentId, String exceptionInfo);
+
+
+
 
 }

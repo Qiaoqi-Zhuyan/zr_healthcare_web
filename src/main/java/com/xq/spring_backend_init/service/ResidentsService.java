@@ -4,6 +4,7 @@ package com.xq.spring_backend_init.service;
 
 import com.xq.spring_backend_init.model.entity.Residents;
 import com.xq.spring_backend_init.model.vo.ExceptionAlert1VO;
+import com.xq.spring_backend_init.model.vo.ExceptionCountVO;
 import com.xq.spring_backend_init.model.vo.ResidentsListVO;
 import com.xq.spring_backend_init.model.vo.ResidentsVO;
 
@@ -35,5 +36,11 @@ public interface ResidentsService {
      List<ResidentsListVO> getResidentsVOList();
 
 
+     /**
+      * 获取过去15天的警报统计数据
+      * @param residentId
+      * @return
+      */
+     public ExceptionCountVO getHistoryExceptionInfo(Integer residentId);
 
 }

@@ -14,4 +14,11 @@ public interface TemperatureService {
      */
     public List<TemperatureVO> getTemperatureVOList(Integer residentId);
 
+    /**
+     * 获取近15天每天的体温数据平均值
+     * @param residentId
+     * @return
+     */
+    public List<TemperatureVO> getTemperatureVOAvgList(Integer residentId);
+
 }
