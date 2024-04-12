@@ -15,6 +15,8 @@ import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
+import static jdk.internal.org.objectweb.asm.Type.getType;
+
 @Slf4j
 @Component
 public class MqttAcceptCallBack implements MqttCallbackExtended {
@@ -62,6 +64,15 @@ public class MqttAcceptCallBack implements MqttCallbackExtended {
     }
 
     {
+        "id": "0x2B",
+            "data": {
+        "temp": "",
+        "humi": "",
+        }
+    }
+
+
+    {
         "id": "0x3A",
             "data": {
         "humi": ""
@@ -79,15 +90,21 @@ public class MqttAcceptCallBack implements MqttCallbackExtended {
         String message = new String(mqttMessage.getPayload());
         System.out.println(message);
         HardwareDataDTO hardwareDataDTO = objectMapper.readValue(message, HardwareDataDTO.class);
+//        System.out.println(hardwareDataDTO);
         switch (hardwareDataDTO.getId()){
-            case 26:
+//            case 26:
+//                double temperature = Double.parseDouble(hardwareDataDTO.getData().getTemp());
+//                System.out.println(temperature);
+//                roomEnvironmentMapper.insertTemperature(temperature);
+//                break;
+            case 43:
+                System.out.println(hardwareDataDTO);
                 double temperature = Double.parseDouble(hardwareDataDTO.getData().getTemp());
-                System.out.println(temperature);
-                roomEnvironmentMapper.insertTemperature(temperature);
-                break;
-            case 58:
                 double humidity = Double.parseDouble(hardwareDataDTO.getData().getHumi());
-                roomEnvironmentMapper.insertHumidity(humidity);
+                System.out.println(hardwareDataDTO.getRoom());
+
+                roomEnvironmentMapper.insertHumidity(humidity, hardwareDataDTO.getRoom());
+                roomEnvironmentMapper.insertTemperature(temperature, hardwareDataDTO.getRoom());
                 break;
 
             default:

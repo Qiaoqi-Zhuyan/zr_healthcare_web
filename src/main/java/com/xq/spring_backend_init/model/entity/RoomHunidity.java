@@ -9,9 +9,9 @@ import java.sql.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RoomHumidity {
-    Double roomHumidity;
-    Integer id;
-    Integer residentId;
-    Date time;
+public class RoomHunidity {
+    private Double roomHumidity;
+    private Integer id;
+    private String roomNumber;
+    private Date time;
 }

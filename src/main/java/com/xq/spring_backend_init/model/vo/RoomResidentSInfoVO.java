@@ -5,6 +5,8 @@ import lombok.Data;
 @Data
 public class RoomResidentSInfoVO {
 
+    private Integer residentId;
+
     private String firstName;
 
     private String lastName;
