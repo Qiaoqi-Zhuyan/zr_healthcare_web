@@ -46,8 +46,8 @@ public class ResidentsServiceImpl implements ResidentsService {
                 exceptionAlert1VO.setExceptionEndTime(formatter.format(e.getExceptionEndTime()));
                 BeanUtils.copyProperties(e,exceptionAlert1VO);
             }else {
-                BeanUtils.copyProperties(e,exceptionAlert1VO);
                 e.setIsCurrent(true);
+                BeanUtils.copyProperties(e,exceptionAlert1VO);
             }
             list2.add(exceptionAlert1VO);
         }
