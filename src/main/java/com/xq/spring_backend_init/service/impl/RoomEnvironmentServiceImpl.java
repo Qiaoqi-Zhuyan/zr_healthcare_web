@@ -19,7 +19,7 @@ public class RoomEnvironmentServiceImpl implements RoomEnvironmentService {
     public void getEnvironment(Integer id) {
         RoomTemperature roomTemperature = roomEnvironmentMapper.getRoomTemperatureById(id);
         RoomHumidity roomHumi = roomEnvironmentMapper.getRoomHumiById(id);
-        //List<RoomResidentSInfoVO>  list =  roomEnvironmentMapper.getResidentInfoById(id);
-        //return new
+        List<RoomResidentSInfoVO>  list =  roomEnvironmentMapper.getResidentInfoById(id);
+        return new
     }
 }
