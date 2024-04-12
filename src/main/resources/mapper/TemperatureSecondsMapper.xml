@@ -19,6 +19,10 @@
         SELECT * FROM temperature_seconds
         WHERE resident_id = #{residentId} AND (DATE_SUB(CURRENT_DATE(), INTERVAL 15 DAY) &lt;= DATE(time))
     </select>
+    <select id="getLeastTemperature" resultType="com.xq.spring_backend_init.model.entity.TemperatureSeconds">
+        SELECT * FROM temperature_seconds
+        WHERE id = (SELECT MAX(id) FROM temperature_seconds) AND resident_id = #{residentId}
+    </select>
 
 
 </mapper>

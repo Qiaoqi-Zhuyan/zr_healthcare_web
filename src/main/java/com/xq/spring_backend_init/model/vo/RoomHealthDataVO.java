@@ -10,12 +10,14 @@ public class RoomHealthDataVO {
      * 实时反馈老人身体信息
      *
      */
-    private Integer temperature;
+    private Integer residentId;
+
+    private Double temperature;
 
     private Double heartRate;
 
     private Double oxygenLevel;
 
-    private String time;
+//    private String time;
 
 }

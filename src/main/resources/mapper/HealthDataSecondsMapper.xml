@@ -19,4 +19,8 @@
         WHERE resident_id = #{residentId} AND (DATE_SUB(CURRENT_DATE(), INTERVAL 15 DAY) &lt;= DATE(time))
 
     </select>
+    <select id="getLeastHealthData" resultType="com.xq.spring_backend_init.model.entity.HealthDataSeconds">
+        SELECT * FROM health_data_seconds
+        WHERE id = (SELECT MAX(id) FROM health_data_seconds) AND resident_id = #{residentId}
+    </select>
 </mapper>

@@ -63,6 +63,13 @@ public interface ResidentsMapper{
      */
     public Residents selectResident(Integer residentId);
 
+    /**
+     * 通过护工id获取房间号信息
+     * @param staffId
+     * @return
+     */
+    public String getRoomNumberByStaffId(Integer staffId);
+
 
 
     public List<ExceptionAlertVO> getAllExceptions(int staffId);

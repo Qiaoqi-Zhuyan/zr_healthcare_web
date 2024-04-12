@@ -3,7 +3,7 @@ package com.xq.spring_backend_init.model.vo;
 import lombok.Data;
 
 @Data
-public class RoomResidentSInfoVO {
+public class RoomResidentInfoVO {
 
     private Integer residentId;
 
@@ -11,10 +11,5 @@ public class RoomResidentSInfoVO {
 
     private String lastName;
 
-    private Double heartRate;
-
-    private Double oxygenLevel;
-
-    private Double bodyTemperature;
 
 }
