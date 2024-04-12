@@ -6,6 +6,7 @@ import com.xq.spring_backend_init.common.ErrorCode;
 import com.xq.spring_backend_init.common.ResultUtils;
 import com.xq.spring_backend_init.model.dto.ResidentQueryRequest;
 import com.xq.spring_backend_init.model.entity.Residents;
+import com.xq.spring_backend_init.model.vo.ExceptionCountVO;
 import com.xq.spring_backend_init.model.vo.ResidentDetailVO;
 import com.xq.spring_backend_init.model.vo.ResidentsListVO;
 import com.xq.spring_backend_init.model.vo.ResidentsVO;
@@ -50,7 +51,7 @@ public class ResidentsController {
     @PostMapping("/pageSelect")
     public BaseResponse<List<ResidentsListVO>> pageSelect(){
         List<ResidentsListVO> residentsListVOList = residentsService.getResidentsVOList();
-        return ResultUtils.success(residentsListVOList);
+        return residentsListVOList.isEmpty()?ResultUtils.error(202, "无数据"): ResultUtils.success(residentsListVOList);
     }
 
     /**
@@ -83,6 +84,14 @@ public class ResidentsController {
     }
 
 
-
-
+    /**
+     * 获得近15日的异常统计
+     * @param residentId
+     * @return
+     */
+    @PostMapping("/getExceptionHistoryInfo/{residentId}")
+    public BaseResponse<ExceptionCountVO> getExceptionHistoryInfo(@PathVariable("residentId") Integer residentId){
+        ExceptionCountVO exceptionCountVO = residentsService.getHistoryExceptionInfo(residentId);
+        return ResultUtils.success(exceptionCountVO);
+    }
 }

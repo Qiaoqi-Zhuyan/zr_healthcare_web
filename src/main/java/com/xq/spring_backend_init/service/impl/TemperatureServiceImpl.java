@@ -20,6 +20,11 @@ public class TemperatureServiceImpl implements TemperatureService {
     @Autowired
     private TemperatureSecondsMapper temperatureSecondsMapper;
 
+    /**
+     * 统计15天的体温数据
+     * @param residentId
+     * @return
+     */
     @Override
     public List<TemperatureVO> getTemperatureVOList(Integer residentId) {
         List<TemperatureVO> temperatureVOS = new ArrayList<>();
@@ -38,4 +43,37 @@ public class TemperatureServiceImpl implements TemperatureService {
 
         return temperatureVOS;
     }
+
+
+    /**
+     * 获取近15天每天的体温数据平均值
+     * @param residentId
+     * @return
+     */
+    @Override
+    public List<TemperatureVO> getTemperatureVOAvgList(Integer residentId) {
+        List<TemperatureVO> temperatureVOList = new ArrayList<>();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        for(int day = 0; day < 15; day++){
+            try{
+                List<TemperatureSeconds> temperatureSecondsList = temperatureSecondsMapper.getTemperature(residentId, day);
+                if (temperatureSecondsList.size() == 0)
+                    continue;
+                double temperatureCount = 0;
+                for (TemperatureSeconds temperatureSeconds : temperatureSecondsList)
+                    temperatureCount += temperatureSeconds.getBodyTemperature();
+                double averageTemperature = temperatureCount / temperatureSecondsList.size();
+                TemperatureVO temperatureVO = new TemperatureVO();
+                temperatureVO.setBodyTemperature(averageTemperature);
+                temperatureVO.setTime(formatter.format(temperatureSecondsList.get(0).getTime()));
+                temperatureVOList.add(temperatureVO);
+            }catch (DataAccessException ex){
+                ex.printStackTrace();
+            }
+        }
+
+        return temperatureVOList;
+    }
+
+
 }

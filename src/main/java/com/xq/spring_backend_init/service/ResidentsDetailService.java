@@ -24,4 +24,6 @@ public interface ResidentsDetailService {
      */
     public List<ResidentDetailVO> getResidentDetailInfo(String firstName);
 
+
+
 }

@@ -43,4 +43,11 @@ public interface HealthDataSecondsMapper {
      */
     public HealthDataSeconds getLeastHealthData(Integer residentId);
 
+    /**
+     * 获取某天前的健康数据
+     * @param residentId
+     * @return
+     */
+    public List<HealthDataSeconds> getHealthDate(Integer residentId, Integer days);
+
 }

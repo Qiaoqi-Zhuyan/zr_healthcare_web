@@ -21,7 +21,12 @@
     </select>
     <select id="getLeastTemperature" resultType="com.xq.spring_backend_init.model.entity.TemperatureSeconds">
         SELECT * FROM temperature_seconds
-        WHERE id = (SELECT MAX(id) FROM temperature_seconds) AND resident_id = #{residentId}
+        WHERE time = (SELECT MAX(time) FROM temperature_seconds) AND resident_id = #{residentId}
+    </select>
+
+    <select id="getTemperature" resultType="com.xq.spring_backend_init.model.entity.TemperatureSeconds">
+        SELECT * FROM temperature_seconds
+        WHERE resident_id = #{residentId} AND (DATE_SUB(CURRENT_DATE(), INTERVAL #{days} DAY) = DATE(time))
     </select>
 
 

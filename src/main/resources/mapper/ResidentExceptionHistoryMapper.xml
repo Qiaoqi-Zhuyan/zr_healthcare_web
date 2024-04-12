@@ -31,4 +31,9 @@
         SELECT * FROM resident_exception_history
         WHERE resident_id = #{residentId};
     </select>
+    <select id="getHistoryExceptionInfo"
+            resultType="com.xq.spring_backend_init.model.entity.ResidentExceptionHistory">
+        SELECT * FROM resident_exception_history
+        WHERE resident_id = #{residentId} AND exception_info = #{exceptionInfo} AND (DATE_SUB(CURRENT_DATE(), INTERVAL 15 DAY) &lt;= DATE(exception_start_time))
+    </select>
 </mapper>
