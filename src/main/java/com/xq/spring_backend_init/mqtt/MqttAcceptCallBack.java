@@ -88,7 +88,7 @@ public class MqttAcceptCallBack implements MqttCallbackExtended {
     @Override
     public void messageArrived(String topic, MqttMessage mqttMessage) throws Exception {
         String message = new String(mqttMessage.getPayload());
-        System.out.println(message);
+//        System.out.println(message);
         HardwareDataDTO hardwareDataDTO = objectMapper.readValue(message, HardwareDataDTO.class);
 //        System.out.println(hardwareDataDTO);
         switch (hardwareDataDTO.getId()){
@@ -101,7 +101,7 @@ public class MqttAcceptCallBack implements MqttCallbackExtended {
                 System.out.println(hardwareDataDTO);
                 double temperature = Double.parseDouble(hardwareDataDTO.getData().getTemp());
                 double humidity = Double.parseDouble(hardwareDataDTO.getData().getHumi());
-                System.out.println(hardwareDataDTO.getRoom());
+//                System.out.println(hardwareDataDTO.getRoom());
 
                 roomEnvironmentMapper.insertHumidity(humidity, hardwareDataDTO.getRoom());
                 roomEnvironmentMapper.insertTemperature(temperature, hardwareDataDTO.getRoom());
