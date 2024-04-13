@@ -2,11 +2,13 @@ package com.xq.spring_backend_init.controller;
 
 import com.xq.spring_backend_init.common.BaseResponse;
 import com.xq.spring_backend_init.common.ResultUtils;
+import com.xq.spring_backend_init.constant.DeviceStatus;
 import com.xq.spring_backend_init.model.entity.Residents;
 import com.xq.spring_backend_init.model.vo.HealthDataVO;
 import com.xq.spring_backend_init.model.vo.RoomEnvironmentInfoVO;
 import com.xq.spring_backend_init.model.vo.RoomHealthDataVO;
 import com.xq.spring_backend_init.model.vo.RoomResidentInfoVO;
+import com.xq.spring_backend_init.mqtt.MqttSendClient;
 import com.xq.spring_backend_init.service.ResidentsService;
 import com.xq.spring_backend_init.service.RoomEnvironmentService;
 import com.xq.spring_backend_init.service.RoomResidentService;
@@ -30,6 +32,9 @@ public class RoomController {
 
     @Autowired
     private RoomResidentService roomResidentService;
+
+    @Autowired
+    private MqttSendClient mqttSendClient;
 
     /**
      * 根据staffId获取最新房间环境信息
@@ -70,5 +75,56 @@ public class RoomController {
     }
 
 
+
+    /**
+     * 空调开
+     * @return
+     */
+    @GetMapping(value = "/SwitchAirConditionerON")
+    public BaseResponse<String> SwitchAirConditionON(){
+        mqttSendClient.publish(false, "device_sub", DeviceStatus.AIR_CONDITION_ON);
+        return ResultUtils.success("Air conditioner on");
+    }
+
+    /**
+     * 关闭空调
+     * @return
+     */
+    @GetMapping(value = "/SwitchAirConditionerOFF")
+    public BaseResponse<String> SwitchAirConditionerOFF(){
+        mqttSendClient.publish(false, "device_sub", DeviceStatus.AIR_CONDITION_OFF);
+        return ResultUtils.success("Air conditioner off");
+    }
+
+    /**
+     * 更改温度
+     * @param temperature
+     * @return
+     */
+    @GetMapping(value = "/TemperatureChange/{temperature}")
+    public BaseResponse<String> TemperatureChange(@PathVariable("temperature")Integer temperature){
+        mqttSendClient.publish(false, "device_sub", DeviceStatus.TEMPERATURE_SWITCH);
+        return ResultUtils.success("Temperature Change " + temperature);
+    }
+
+    /**
+     * 开启加湿器
+     * @return
+     */
+    @GetMapping(value = "/HumidifierON")
+    public BaseResponse<String> HumidifierON(){
+        mqttSendClient.publish(false, "device_sub", DeviceStatus.HUMIDIFIER_ON);
+        return ResultUtils.success("Humidifier on");
+    }
+
+    /**
+     * 关闭加湿器
+     * @return
+     */
+    @GetMapping(value = "/HumidifierOFF")
+    public BaseResponse<String> HumidifierOFF(){
+        mqttSendClient.publish(false, "device_sub", DeviceStatus.HUMIDIFIER_OFF);
+        return ResultUtils.success("Humidifier off");
+    }
 
 }
