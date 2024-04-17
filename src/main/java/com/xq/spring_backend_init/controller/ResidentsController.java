@@ -28,12 +28,6 @@ public class ResidentsController {
     @Autowired
     private ResidentsDetailService residentsDetailService;
 
-//    @PostMapping("/getResidentInfo/")
-//    public BaseResponse<Residents> listResident(@RequestBody ResidentQueryRequest residentQueryRequest){
-//        return null;
-//    }
-
-
     /**
      * 测试
      * @return

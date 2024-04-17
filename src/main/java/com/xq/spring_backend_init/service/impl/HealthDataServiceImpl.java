@@ -19,7 +19,6 @@ public class HealthDataServiceImpl implements HealthDataService {
     @Autowired
     private HealthDataSecondsMapper healthDataSecondsMapper;
 
-
     /**
      * 获得所有的健康信息
      * @param residentId
