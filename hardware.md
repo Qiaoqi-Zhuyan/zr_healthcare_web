@@ -6,15 +6,20 @@
 接受后端传回的控制指令, 控制房间里的空调开关, 温度调节和加湿器的开关, 在led板上进行模拟显示控制结果。
 
 ### 联网:
-在`zr_env_det`项目中`mqtt_task.c`文件中修改联网
+在`zr_env_det_ver2`项目中`config.h`文件中修改配置
 
 `SSID`: 连接wifi的名称
 `PASSWORD`: wifi密码
+`HOST_ADDR`: emqx服务器地址
+`ROOM_ID`: 设备对应的房间号(例: "A410")
+`BORAD_ID`: 设备id
 
 ### 数据收发格式:
 #### 1. 开发板发送房间温湿度数据
 
-发送主题: `env_pub`
+设备ID: `RoomDet/{ROOM_ID}`
+
+发送主题: `{ROOM_ID}/env_pub`
 
 JSON格式:
 
@@ -43,7 +48,7 @@ humi (float) : 房间里检测到的湿度, 小数点后两位。
 
 
 #### 2. 开发板接受后端控制指令
-订阅主题: `device_sub`
+订阅主题: `{ROOM_ID}device_sub`
 
 后端发送指令, int32类型
 
@@ -61,15 +66,23 @@ humi (float) : 房间里检测到的湿度, 小数点后两位。
 用于检测病房中老人的心率、血氧, 并在oled屏幕上显示老人信息的二维码
 
 ### 联网:
-在`zr_env_det`项目中`mqtt_task.c`文件中修改联网
+在`zr_intel_brec_ver2`项目中`config.h`文件中修改配置
 
 `SSID`: 连接wifi的名称
+
 `PASSWORD`: wifi密码
 
+`HOST_ADDR`: emqx服务器地址
+
+`DEVICE_ID`: 设备号id (例如: 0x01)
+
 ### 数据收发格式:
+
+客户端id: `intel_brec_dev/{DEVICE_ID}`
+
 #### 1. 体温信息发送
 
-发布主题: `brec_pub`
+发布主题: `brec_pub/{DEVICE_ID}`
 
 JSON 格式:
 
@@ -92,7 +105,7 @@ temperature (int) : 体温数据
 
 #### 2. 血氧心率信息发送
 
-发布主题: `brec_pub`
+发布主题: `brec_pub/{DEVICE_ID}`
 
 JSON 格式:
 

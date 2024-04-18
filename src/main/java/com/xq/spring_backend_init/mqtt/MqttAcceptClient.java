@@ -85,6 +85,10 @@ public class MqttAcceptClient {
         }
     }
 
+    public MqttClient getMqttClinet(){
+        return mqttClient;
+    }
+
     /**
      * 取消订阅
      */

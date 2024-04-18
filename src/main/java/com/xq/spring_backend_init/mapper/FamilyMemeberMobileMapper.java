@@ -35,21 +35,5 @@ public interface FamilyMemeberMobileMapper {
      */
     public String selectRelationship(Integer residentId, String userName);
 
-    /**
-     * 根据条件信息删除家属信息
-     * @param familyMemberMobile
-     */
-    public void deletFamilyMemberMobile(FamilyMemberMobile familyMemberMobile);
 
-    /**
-     * 更新家属信息
-     * @param familyMemberMobile
-     */
-    public void updateFamilyMemberMobile(FamilyMemberMobile familyMemberMobile);
-
-    /**
-     * 插入新的家属信息
-     * @param familyMemberMobile
-     */
-    public void insertFamilyMemberMobile(FamilyMemberMobile familyMemberMobile);
 }

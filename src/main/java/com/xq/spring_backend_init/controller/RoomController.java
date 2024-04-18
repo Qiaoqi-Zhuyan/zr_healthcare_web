@@ -12,11 +12,13 @@ import com.xq.spring_backend_init.mqtt.MqttSendClient;
 import com.xq.spring_backend_init.service.ResidentsService;
 import com.xq.spring_backend_init.service.RoomEnvironmentService;
 import com.xq.spring_backend_init.service.RoomResidentService;
+import com.xq.spring_backend_init.utils.DeviceMap;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -41,8 +43,14 @@ public class RoomController {
      */
     @PostMapping("/getRoomEnvironment/{staffId}")
     public BaseResponse<RoomEnvironmentInfoVO> getRoomEnvironment(@PathVariable("staffId") Integer staffId){
-        RoomEnvironmentInfoVO roomEnvironmentInfoVO = roomEnvironmentService.getLeastInfo(staffId);
-        return ResultUtils.success(roomEnvironmentInfoVO);
+        if (DeviceMap.getDeviceMapInstance().containDevice("RoomDet/A410")) {
+            RoomEnvironmentInfoVO roomEnvironmentInfoVO = roomEnvironmentService.getLeastInfo(staffId);
+            return ResultUtils.success(roomEnvironmentInfoVO);
+        }
+        else{
+            RoomEnvironmentInfoVO roomEnvironmentInfoVO = new RoomEnvironmentInfoVO(200.0, 200.0);
+            return ResultUtils.success(roomEnvironmentInfoVO);
+        }
     }
 
     /**
@@ -82,8 +90,13 @@ public class RoomController {
      */
     @GetMapping(value = "/SwitchAirConditionerON")
     public BaseResponse<String> SwitchAirConditionON(){
-        mqttSendClient.publish(false, "device_sub", DeviceStatus.AIR_CONDITION_ON);
-        return ResultUtils.success("Air conditioner on");
+        if(DeviceMap.getDeviceMapInstance().containDevice("RoomDet/A410")) {
+            mqttSendClient.publish(false, "A410/device_sub", DeviceStatus.AIR_CONDITION_ON);
+            return ResultUtils.success("Air conditioner on");
+        }
+        else {
+            return ResultUtils.error(101, "设备离线");
+        }
     }
 
     /**
@@ -92,7 +105,7 @@ public class RoomController {
      */
     @GetMapping(value = "/SwitchAirConditionerOFF")
     public BaseResponse<String> SwitchAirConditionerOFF(){
-        mqttSendClient.publish(false, "device_sub", DeviceStatus.AIR_CONDITION_OFF);
+        mqttSendClient.publish(false, "A410/device_sub", DeviceStatus.AIR_CONDITION_OFF);
         return ResultUtils.success("Air conditioner off");
     }
 
@@ -103,7 +116,7 @@ public class RoomController {
      */
     @GetMapping(value = "/TemperatureChange/{temperature}")
     public BaseResponse<String> TemperatureChange(@PathVariable("temperature")Integer temperature){
-        mqttSendClient.publish(false, "device_sub", DeviceStatus.TEMPERATURE_SWITCH);
+        mqttSendClient.publish(false, "A410/device_sub", DeviceStatus.TEMPERATURE_SWITCH);
         return ResultUtils.success("Temperature Change " + temperature);
     }
 
@@ -113,7 +126,7 @@ public class RoomController {
      */
     @GetMapping(value = "/HumidifierON")
     public BaseResponse<String> HumidifierON(){
-        mqttSendClient.publish(false, "device_sub", DeviceStatus.HUMIDIFIER_ON);
+        mqttSendClient.publish(false, "A410/device_sub", DeviceStatus.HUMIDIFIER_ON);
         return ResultUtils.success("Humidifier on");
     }
 
@@ -123,7 +136,7 @@ public class RoomController {
      */
     @GetMapping(value = "/HumidifierOFF")
     public BaseResponse<String> HumidifierOFF(){
-        mqttSendClient.publish(false, "device_sub", DeviceStatus.HUMIDIFIER_OFF);
+        mqttSendClient.publish(false, "A410/device_sub", DeviceStatus.HUMIDIFIER_OFF);
         return ResultUtils.success("Humidifier off");
     }
 

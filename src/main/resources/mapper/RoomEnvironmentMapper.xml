@@ -11,7 +11,7 @@
 
     <select id="getLeastTemperature" resultType="com.xq.spring_backend_init.model.entity.RoomTemperature">
         SELECT * FROM room_temperature
-        WHERE time = (SELECT MAX(time) FROM room_temperature) AND room_number = #{room}
+        WHERE time = (SELECT MAX(time) FROM room_temperature ) AND room_number = #{room}
     </select>
 
 
